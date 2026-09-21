@@ -1,19 +1,27 @@
 
-# EX 1D Sorted Array using Divide and Conquer Approach.
+# EX 1C Valid Pairs using Brute Force Approach
 ## DATE: 16/09/2026
 ## AIM:
 To write a Java program to for given constraints.
-Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
+Given an integer array nums and an integer k, return the number of pairs (i, j) where i < j such that |nums[i] - nums[j]| == k.
 
-The overall run time complexity should be O(log (m+n)).
+The value of |x| is defined as:
+
+x if x >= 0.
+-x if x < 0.
 
 ## Algorithm
-1. Start the program and import the `Scanner` class to take user input.
-2. Read the sizes of the two sorted arrays and store their elements in `nums1` and `nums2`.
-3. Calculate the total length of both arrays combined.
-4. Use the `getMin()` method to sequentially retrieve the smallest elements from both arrays until reaching the median position.
-5. Display the median value of the merged sorted arrays as the final output.
-  
+1.Start the program and read the integer input n (array size), the array elements nums[], and the integer k.
+
+2.Initialize a variable count to 0 to store the number of valid pairs.
+
+3.Use two nested loops to check all possible pairs (i, j) where i < j.
+
+4.For each pair, calculate |nums[i] - nums[j]|;
+
+5.If the result equals k, increment the count by 1.
+
+6.After checking all pairs, print the value of count and stop the program   
 
 ## Program:
 ```
@@ -21,84 +29,40 @@ The overall run time complexity should be O(log (m+n)).
 Program to implement Reverse a String
 Developed by: DHANUJA M
 Register Number:  2122224230057
-*/
 
 import java.util.Scanner;
-
-public class Solution {
-    private int p1 = 0, p2 = 0;
-
-    // Get the smaller value between nums1[p1] and nums2[p2], and move the pointer forward
-    private int getMin(int[] nums1, int[] nums2) {
-        if (p1 < nums1.length && p2 < nums2.length) {
-            return nums1[p1] < nums2[p2] ? nums1[p1++] : nums2[p2++];
-        } else if (p1 < nums1.length) {
-            return nums1[p1++];
-        } else if (p2 < nums2.length) {
-            return nums2[p2++];
-        }
-        return -1; // Should not reach here if input is valid
-    }
-
-    // Main logic to find median of two sorted arrays
-    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-       //Type code here...
-       int m=nums1.length;
-        int n=nums2.length;
-        int total=m+n;
-        if(total%2==0)
-        {
-            for(int i=0;i<total/2-1;++i)
-            {
-                getMin(nums1,nums2);
+public class CountPairsWithDifference {
+    public static int countKDifference(int[] nums, int k) {
+        int count=0;
+        for (int i=0;i<nums.length;i++){
+            for (int j=i+1;j<nums.length;j++){
+                if(Math.abs(nums[i]-nums[j])==k){
+                    count++;
+                }
             }
-            return (double)(getMin(nums1,nums2)+getMin(nums1,nums2))/2;
         }
-        else
-        {
-            for(int i=0;i<total/2;++i)
-            {
-                getMin(nums1,nums2);
-            }
-            return getMin(nums1,nums2);
-        }
+        //Type your code here
+        return count;
     }
-
-    // Main method with user input
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Solution sol = new Solution();
-
-        // Input for nums1
-        //System.out.print("Enter size of first sorted array: ");
-        int m = sc.nextInt();
-        int[] nums1 = new int[m];
-        //System.out.println("Enter " + m + " sorted integers for first array:");
-        for (int i = 0; i < m; i++) {
-            nums1[i] = sc.nextInt();
-        }
-
-        // Input for nums2
-        //System.out.print("Enter size of second sorted array: ");
         int n = sc.nextInt();
-        int[] nums2 = new int[n];
-        //System.out.println("Enter " + n + " sorted integers for second array:");
+        int[] nums = new int[n];
         for (int i = 0; i < n; i++) {
-            nums2[i] = sc.nextInt();
+            nums[i] = sc.nextInt();
         }
-
-        // Find and display the median
-        double median = sol.findMedianSortedArrays(nums1, nums2);
-        System.out.println("Median of the two sorted arrays = " + median);
-        
+        int k = sc.nextInt();
+        int result = countKDifference(nums, k);
+        System.out.println(result);
         sc.close();
     }
 }
-
+  
+*/
 ```
 
 ## Output:
-<img width="813" height="349" alt="image" src="https://github.com/user-attachments/assets/08406be8-2afd-44a0-9914-d05d68b1ea25" />
+<img width="627" height="324" alt="image" src="https://github.com/user-attachments/assets/7308b6af-8317-4321-ba72-dba342c99ff4" />
 
 
 
