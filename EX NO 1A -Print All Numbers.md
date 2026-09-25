@@ -20,7 +20,7 @@ To Write a Java program that takes an integer input N from the user and prints a
 ```
 /*
 Program to implement Reverse a String
-Developed by: vishw V
+Developed by: vishwa V
 Register Number:  212224110062
 
 import java.util.*;
